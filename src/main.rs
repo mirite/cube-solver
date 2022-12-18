@@ -93,6 +93,17 @@ fn build_side(args: &Vec<String>, start: usize) -> Face {
     }
 }
 
+fn build_cube(args: &Vec<String>) -> Cube {
+    Cube {
+        white: build_side(&args, 1),
+        orange: build_side(&args, 10),
+        yellow: build_side(&args, 19),
+        red: build_side(&args, 28),
+        green: build_side(&args, 37),
+        blue: build_side(&args, 46),
+    }
+}
+
 fn test_cube(cube: &Cube) -> () {
     assert_eq!(cube.yellow.m.c, 'y');
     assert_eq!(cube.green.m.c, 'g');
@@ -104,15 +115,7 @@ fn test_cube(cube: &Cube) -> () {
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let cube = Cube {
-        white: build_side(&args, 1),
-        orange: build_side(&args, 10),
-        yellow: build_side(&args, 19),
-        red: build_side(&args, 28),
-        green: build_side(&args, 37),
-        blue: build_side(&args, 46),
-    };
-
+    let cube = build_cube(&args);
     test_cube(&cube);
     println!("{}", cube);
 }
