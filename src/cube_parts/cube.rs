@@ -1,5 +1,6 @@
 use super::face::{build_side, Face};
 use std::fmt::{Display, Formatter};
+use crate::cube_parts::face::test_face;
 
 pub struct Cube {
     pub white: Face,
@@ -56,10 +57,36 @@ pub fn build_cube(args: &Vec<String>) -> Cube {
 }
 
 pub fn test_cube(cube: &Cube) -> () {
-    assert_eq!(cube.yellow.m.c, 'y');
-    assert_eq!(cube.green.m.c, 'g');
-    assert_eq!(cube.red.m.c, 'r');
-    assert_eq!(cube.white.m.c, 'w');
-    assert_eq!(cube.orange.m.c, 'o');
-    assert_eq!(cube.blue.m.c, 'b');
+
+    let mut counts = Counts {
+        y: 0,
+        g: 0,
+        r: 0,
+        w: 0,
+        o: 0,
+        b: 0,
+    };
+
+    counts = test_face(&cube.yellow, counts, 'y');
+    counts = test_face(&cube.green, counts, 'g');
+    counts = test_face(&cube.red, counts, 'r');
+    counts = test_face(&cube.white, counts, 'w');
+    counts = test_face(&cube.orange, counts, 'o');
+    counts = test_face(&cube.blue, counts, 'b');
+
+    assert_eq!(counts.g, 9);
+    assert_eq!(counts.r, 9);
+    assert_eq!(counts.w, 9);
+    assert_eq!(counts.o, 9);
+    assert_eq!(counts.b, 9);
+    assert_eq!(counts.y, 9);
+}
+
+pub struct Counts {
+    pub y: u8,
+    pub g: u8,
+    pub r: u8,
+    pub w: u8,
+    pub o: u8,
+    pub b: u8,
 }
