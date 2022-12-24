@@ -13,10 +13,13 @@ fn main() {
     println!("{}", cube);
 
     println!("F turn");
+    cube = turn_cube(Turns::F, cube);
+    cube = turn_cube(Turns::F, cube);
+    cube = turn_cube(Turns::F, cube);
+    cube = turn_cube(Turns::F, cube);
     cube = turn_cube(Turns::Fp, cube);
-    println!("{}", cube);
-
-    println!("F' turn");
+    cube = turn_cube(Turns::Fp, cube);
+    cube = turn_cube(Turns::Fp, cube);
     cube = turn_cube(Turns::Fp, cube);
     println!("{}", cube);
 

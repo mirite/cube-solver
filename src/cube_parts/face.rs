@@ -36,12 +36,12 @@ pub fn rotate_clockwise(
     right_edge.t.l = temp_top_edge.b.l;
     right_edge.m.l = temp_top_edge.b.c;
     right_edge.b.l = temp_top_edge.b.r;
-    down_edge.t.l = temp_right_edge.b.l;
-    down_edge.t.c = temp_right_edge.b.c;
-    down_edge.t.r = temp_right_edge.b.r;
-    left_edge.t.r = temp_down_edge.b.l;
-    left_edge.m.r = temp_down_edge.b.c;
-    left_edge.b.r = temp_down_edge.b.r;
+    down_edge.t.l = temp_right_edge.t.l;
+    down_edge.t.c = temp_right_edge.m.l;
+    down_edge.t.r = temp_right_edge.b.l;
+    left_edge.t.r = temp_down_edge.t.l;
+    left_edge.m.r = temp_down_edge.t.c;
+    left_edge.b.r = temp_down_edge.t.r;
 }
 
 pub fn rotate_counter_clockwise(
@@ -64,14 +64,14 @@ pub fn rotate_counter_clockwise(
     working_face.b.l = temp_face.t.l;
     working_face.b.c = temp_face.m.l;
     working_face.b.r = temp_face.b.l;
-    top_edge.b.l = temp_right_edge.b.l;
-    top_edge.b.c = temp_right_edge.b.c;
-    top_edge.b.r = temp_right_edge.b.r;
-    right_edge.t.l = temp_down_edge.b.l;
-    right_edge.m.l = temp_down_edge.b.c;
-    right_edge.b.l = temp_down_edge.b.r;
-    down_edge.t.l = temp_left_edge.b.l;
-    down_edge.t.c = temp_left_edge.b.c;
+    top_edge.b.l = temp_right_edge.t.l;
+    top_edge.b.c = temp_right_edge.m.l;
+    top_edge.b.r = temp_right_edge.b.l;
+    right_edge.t.l = temp_down_edge.t.l;
+    right_edge.m.l = temp_down_edge.t.c;
+    right_edge.b.l = temp_down_edge.t.r;
+    down_edge.t.l = temp_left_edge.t.r;
+    down_edge.t.c = temp_left_edge.m.r;
     down_edge.t.r = temp_left_edge.b.r;
     left_edge.t.r = temp_top_edge.b.l;
     left_edge.m.r = temp_top_edge.b.c;
