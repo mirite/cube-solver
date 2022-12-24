@@ -1,8 +1,7 @@
-use super::face::{build_side, Face};
-use crate::cube_parts::face::test_face;
+use super::face::build_side;
+use crate::cube_parts::face::{test_face, Face};
 use std::fmt::{Display, Formatter};
 
-#[derive(Clone, Debug)]
 pub struct Cube {
     pub white: Face,
     pub red: Face,
@@ -47,13 +46,19 @@ impl Display for Cube {
 }
 
 pub fn build_cube(args: &Vec<String>) -> Cube {
+    let white = build_side(&args, 1);
+    let orange = build_side(&args, 10);
+    let yellow = build_side(&args, 19);
+    let red = build_side(&args, 28);
+    let green = build_side(&args, 37);
+    let blue = build_side(&args, 46);
     Cube {
-        white: build_side(&args, 1),
-        orange: build_side(&args, 10),
-        yellow: build_side(&args, 19),
-        red: build_side(&args, 28),
-        green: build_side(&args, 37),
-        blue: build_side(&args, 46),
+        white,
+        orange,
+        yellow,
+        red,
+        green,
+        blue,
     }
 }
 

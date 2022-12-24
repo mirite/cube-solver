@@ -3,11 +3,79 @@ use super::square::parse_square;
 use crate::cube_parts::cube::{Counts, Cube};
 use std::fmt::{Display, Formatter};
 
-#[derive(Clone, Debug)]
+#[derive(Copy, Clone)]
 pub struct Face {
     pub t: Row,
     pub m: Row,
     pub b: Row,
+}
+
+pub fn rotate_clockwise(
+    mut working_face: &mut Face,
+    mut top_edge: &mut Face,
+    mut right_edge: &mut Face,
+    mut down_edge: &mut Face,
+    mut left_edge: &mut Face,
+) -> () {
+    let temp_face = working_face.clone();
+    let temp_top_edge = top_edge.clone();
+    let temp_right_edge = right_edge.clone();
+    let temp_down_edge = down_edge.clone();
+    let temp_left_edge = left_edge.clone();
+    working_face.t.l = temp_face.b.l;
+    working_face.t.c = temp_face.m.l;
+    working_face.t.r = temp_face.t.l;
+    working_face.m.l = temp_face.b.c;
+    working_face.m.r = temp_face.t.c;
+    working_face.b.l = temp_face.b.r;
+    working_face.b.c = temp_face.m.r;
+    working_face.b.r = temp_face.t.r;
+    top_edge.b.l = temp_left_edge.b.r;
+    top_edge.b.c = temp_left_edge.m.r;
+    top_edge.b.r = temp_left_edge.t.r;
+    right_edge.t.l = temp_top_edge.b.l;
+    right_edge.m.l = temp_top_edge.b.c;
+    right_edge.b.l = temp_top_edge.b.r;
+    down_edge.t.l = temp_right_edge.b.l;
+    down_edge.t.c = temp_right_edge.b.c;
+    down_edge.t.r = temp_right_edge.b.r;
+    left_edge.t.r = temp_down_edge.b.l;
+    left_edge.m.r = temp_down_edge.b.c;
+    left_edge.b.r = temp_down_edge.b.r;
+}
+
+pub fn rotate_counter_clockwise(
+    mut working_face: &mut Face,
+    mut top_edge: &mut Face,
+    mut right_edge: &mut Face,
+    mut down_edge: &mut Face,
+    mut left_edge: &mut Face,
+) -> () {
+    let temp_face = working_face.clone();
+    let temp_top_edge = top_edge.clone();
+    let temp_right_edge = right_edge.clone();
+    let temp_down_edge = down_edge.clone();
+    let temp_left_edge = left_edge.clone();
+    working_face.t.l = temp_face.t.r;
+    working_face.t.c = temp_face.m.r;
+    working_face.t.r = temp_face.b.r;
+    working_face.m.l = temp_face.t.c;
+    working_face.m.r = temp_face.b.c;
+    working_face.b.l = temp_face.t.l;
+    working_face.b.c = temp_face.m.l;
+    working_face.b.r = temp_face.b.l;
+    top_edge.b.l = temp_right_edge.b.l;
+    top_edge.b.c = temp_right_edge.b.c;
+    top_edge.b.r = temp_right_edge.b.r;
+    right_edge.t.l = temp_down_edge.b.l;
+    right_edge.m.l = temp_down_edge.b.c;
+    right_edge.b.l = temp_down_edge.b.r;
+    down_edge.t.l = temp_left_edge.b.l;
+    down_edge.t.c = temp_left_edge.b.c;
+    down_edge.t.r = temp_left_edge.b.r;
+    left_edge.t.r = temp_top_edge.b.l;
+    left_edge.m.r = temp_top_edge.b.c;
+    left_edge.b.r = temp_top_edge.b.r;
 }
 
 pub fn build_side(args: &Vec<String>, start: usize) -> Face {
@@ -33,30 +101,6 @@ pub fn build_side(args: &Vec<String>, start: usize) -> Face {
 impl Display for Face {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, " _ _ _ \n{}\n{}\n{}\n - - - ", self.t, self.m, self.b)
-    }
-}
-
-pub fn get_opposite_face(cube: &Cube, colour: char) -> &Face {
-    match colour {
-        'w' => &cube.yellow,
-        'y' => &cube.white,
-        'b' => &cube.green,
-        'g' => &cube.blue,
-        'o' => &cube.red,
-        'r' => &cube.orange,
-        _ => panic!("Invalid side provided {}", colour),
-    }
-}
-
-pub fn get_adjacent_faces(cube: &Cube, colour: char) -> (&Face, &Face, &Face, &Face) {
-    match colour {
-        'w' => (&cube.red, &cube.green, &cube.orange, &cube.blue),
-        'r' => (&cube.white, &cube.blue, &cube.yellow, &cube.green),
-        'y' => (&cube.red, &cube.blue, &cube.orange, &cube.green),
-        'o' => (&cube.yellow, &cube.blue, &cube.white, &cube.green),
-        'b' => (&cube.white, &cube.orange, &cube.yellow, &cube.red),
-        'g' => (&cube.red, &cube.yellow, &cube.orange, &cube.white),
-        _ => panic!("Invalid side provided {}", colour),
     }
 }
 
