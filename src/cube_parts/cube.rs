@@ -1,7 +1,8 @@
 use super::face::{build_side, Face};
-use std::fmt::{Display, Formatter};
 use crate::cube_parts::face::test_face;
+use std::fmt::{Display, Formatter};
 
+#[derive(Clone, Debug)]
 pub struct Cube {
     pub white: Face,
     pub red: Face,
@@ -18,29 +19,29 @@ impl Display for Cube {
             f,
             "{}{}\n{}{}\n{}{}\n{} {} {} {}\n{} {} {} {}\n{} {} {} {}\n{}{}\n{}{}\n{}{}",
             spacer,
-            self.red.t,
-            spacer,
-            self.red.m,
-            spacer,
-            self.red.b,
-            self.blue.t,
-            self.white.t,
-            self.green.t,
-            self.yellow.t,
-            self.blue.m,
-            self.white.m,
-            self.green.m,
-            self.yellow.m,
-            self.blue.b,
-            self.white.b,
-            self.green.b,
-            self.yellow.b,
-            spacer,
             self.orange.t,
             spacer,
             self.orange.m,
             spacer,
-            self.orange.b
+            self.orange.b,
+            self.green.t,
+            self.white.t,
+            self.blue.t,
+            self.yellow.t,
+            self.green.m,
+            self.white.m,
+            self.blue.m,
+            self.yellow.m,
+            self.green.b,
+            self.white.b,
+            self.blue.b,
+            self.yellow.b,
+            spacer,
+            self.red.t,
+            spacer,
+            self.red.m,
+            spacer,
+            self.red.b
         )
     }
 }
@@ -57,7 +58,6 @@ pub fn build_cube(args: &Vec<String>) -> Cube {
 }
 
 pub fn test_cube(cube: &Cube) -> () {
-
     let mut counts = Counts {
         y: 0,
         g: 0,
