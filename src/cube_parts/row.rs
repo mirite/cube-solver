@@ -1,6 +1,6 @@
 use std::fmt::{Display, Formatter};
 
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Eq, PartialEq, Debug)]
 pub struct Row {
     pub l: char,
     pub c: char,

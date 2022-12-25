@@ -2,6 +2,7 @@ use super::face::build_side;
 use crate::cube_parts::face::{test_face, Face};
 use std::fmt::{Display, Formatter};
 
+#[derive(PartialEq, Debug)]
 pub struct Cube {
     pub white: Face,
     pub red: Face,

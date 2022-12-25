@@ -3,7 +3,7 @@ use super::square::parse_square;
 use crate::cube_parts::cube::{Counts, Cube};
 use std::fmt::{Display, Formatter};
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Eq, PartialEq, Debug)]
 pub struct Face {
     pub t: Row,
     pub m: Row,
@@ -17,19 +17,11 @@ pub fn rotate_clockwise(
     mut down_edge: &mut Face,
     mut left_edge: &mut Face,
 ) -> () {
-    let temp_face = working_face.clone();
+    rotate_face_clockwise(&mut working_face);
     let temp_top_edge = top_edge.clone();
     let temp_right_edge = right_edge.clone();
     let temp_down_edge = down_edge.clone();
     let temp_left_edge = left_edge.clone();
-    working_face.t.l = temp_face.b.l;
-    working_face.t.c = temp_face.m.l;
-    working_face.t.r = temp_face.t.l;
-    working_face.m.l = temp_face.b.c;
-    working_face.m.r = temp_face.t.c;
-    working_face.b.l = temp_face.b.r;
-    working_face.b.c = temp_face.m.r;
-    working_face.b.r = temp_face.t.r;
     top_edge.b.l = temp_left_edge.b.r;
     top_edge.b.c = temp_left_edge.m.r;
     top_edge.b.r = temp_left_edge.t.r;
@@ -44,6 +36,18 @@ pub fn rotate_clockwise(
     left_edge.b.r = temp_down_edge.t.r;
 }
 
+fn rotate_face_clockwise(working_face: &mut &mut Face) {
+    let temp_face = working_face.clone();
+    working_face.t.l = temp_face.b.l;
+    working_face.t.c = temp_face.m.l;
+    working_face.t.r = temp_face.t.l;
+    working_face.m.l = temp_face.b.c;
+    working_face.m.r = temp_face.t.c;
+    working_face.b.l = temp_face.b.r;
+    working_face.b.c = temp_face.m.r;
+    working_face.b.r = temp_face.t.r;
+}
+
 pub fn rotate_counter_clockwise(
     mut working_face: &mut Face,
     mut top_edge: &mut Face,
@@ -51,19 +55,11 @@ pub fn rotate_counter_clockwise(
     mut down_edge: &mut Face,
     mut left_edge: &mut Face,
 ) -> () {
-    let temp_face = working_face.clone();
+    rotate_face_counter_clockwise(&mut working_face);
     let temp_top_edge = top_edge.clone();
     let temp_right_edge = right_edge.clone();
     let temp_down_edge = down_edge.clone();
     let temp_left_edge = left_edge.clone();
-    working_face.t.l = temp_face.t.r;
-    working_face.t.c = temp_face.m.r;
-    working_face.t.r = temp_face.b.r;
-    working_face.m.l = temp_face.t.c;
-    working_face.m.r = temp_face.b.c;
-    working_face.b.l = temp_face.t.l;
-    working_face.b.c = temp_face.m.l;
-    working_face.b.r = temp_face.b.l;
     top_edge.b.l = temp_right_edge.t.l;
     top_edge.b.c = temp_right_edge.m.l;
     top_edge.b.r = temp_right_edge.b.l;
@@ -76,6 +72,18 @@ pub fn rotate_counter_clockwise(
     left_edge.t.r = temp_top_edge.b.l;
     left_edge.m.r = temp_top_edge.b.c;
     left_edge.b.r = temp_top_edge.b.r;
+}
+
+fn rotate_face_counter_clockwise(working_face: &mut &mut Face) {
+    let temp_face = working_face.clone();
+    working_face.t.l = temp_face.t.r;
+    working_face.t.c = temp_face.m.r;
+    working_face.t.r = temp_face.b.r;
+    working_face.m.l = temp_face.t.c;
+    working_face.m.r = temp_face.b.c;
+    working_face.b.l = temp_face.t.l;
+    working_face.b.c = temp_face.m.l;
+    working_face.b.r = temp_face.b.l;
 }
 
 pub fn build_side(args: &Vec<String>, start: usize) -> Face {
