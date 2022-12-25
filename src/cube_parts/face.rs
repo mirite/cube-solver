@@ -105,14 +105,14 @@ pub fn rotate_counter_clockwise(
         top_edge.t.r = temp_right_edge.t.l;
         top_edge.m.r = temp_right_edge.m.l;
         top_edge.b.r = temp_right_edge.b.l;
-        right_edge.t.l = temp_down_edge.t.l;
-        right_edge.m.l = temp_down_edge.t.c;
-        right_edge.b.l = temp_down_edge.t.r;
+        right_edge.t.l = temp_down_edge.t.r;
+        right_edge.m.l = temp_down_edge.m.r;
+        right_edge.b.l = temp_down_edge.b.r;
         down_edge.t.r = temp_left_edge.t.r;
         down_edge.m.r = temp_left_edge.m.r;
         down_edge.b.r = temp_left_edge.b.r;
-        left_edge.t.r = temp_top_edge.b.l;
-        left_edge.m.r = temp_top_edge.b.c;
+        left_edge.t.r = temp_top_edge.t.r;
+        left_edge.m.r = temp_top_edge.m.r;
         left_edge.b.r = temp_top_edge.b.r;
     }
 }
