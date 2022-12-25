@@ -36,7 +36,7 @@ pub fn rotate_clockwise(
     left_edge.b.r = temp_down_edge.t.r;
 }
 
-fn rotate_face_clockwise(working_face: &mut &mut Face) {
+fn rotate_face_clockwise(working_face: &mut Face) {
     let temp_face = working_face.clone();
     working_face.t.l = temp_face.b.l;
     working_face.t.c = temp_face.m.l;
@@ -74,7 +74,7 @@ pub fn rotate_counter_clockwise(
     left_edge.b.r = temp_top_edge.b.r;
 }
 
-fn rotate_face_counter_clockwise(working_face: &mut &mut Face) {
+fn rotate_face_counter_clockwise(working_face: &mut Face) {
     let temp_face = working_face.clone();
     working_face.t.l = temp_face.t.r;
     working_face.t.c = temp_face.m.r;

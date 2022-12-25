@@ -53,7 +53,7 @@ mod tests {
         let mut cube = solved_cube();
         let expected_result_cube = build_cube(&create_vec(result_map));
 
-        cube = turn_cube(Turns::R, cube);
+        cube = turn_cube(turn, cube);
         assert_eq!(
             cube, expected_result_cube,
             "\nActual Cube:\n{}\n\nExpected Cube:\n{}\n",
