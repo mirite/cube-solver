@@ -49,12 +49,16 @@ mod tests {
         (cube, expected_result_cube)
     }
 
-    fn test_single(result_map: Vec<&str>, turn: Turns) -> (Cube, Cube) {
+    fn test_single(result_map: Vec<&str>, turn: Turns) -> () {
         let mut cube = solved_cube();
         let expected_result_cube = build_cube(&create_vec(result_map));
 
         cube = turn_cube(Turns::R, cube);
-        (cube, expected_result_cube)
+        assert_eq!(
+            cube, expected_result_cube,
+            "\nActual Cube:\n{}\n\nExpected Cube:\n{}\n",
+            cube, expected_result_cube
+        );
     }
 
     #[test]
@@ -94,6 +98,28 @@ mod tests {
     }
 
     #[test]
+    fn face_single() {
+        let result = vec![
+            "", "w", "w", "w", "w", "w", "w", "w", "w", "w", "o", "o", "o", "o", "o", "o", "g",
+            "g", "g", "y", "y", "y", "y", "y", "y", "y", "y", "y", "b", "b", "b", "r", "r", "r",
+            "r", "r", "r", "g", "g", "r", "g", "g", "r", "g", "g", "r", "o", "b", "b", "o", "b",
+            "b", "o", "b", "b",
+        ];
+        test_single(result, Turns::F);
+    }
+
+    #[test]
+    fn face_counter_single() {
+        let result = vec![
+            "", "w", "w", "w", "w", "w", "w", "w", "w", "w", "o", "o", "o", "o", "o", "o", "b",
+            "b", "b", "y", "y", "y", "y", "y", "y", "y", "y", "y", "g", "g", "g", "r", "r", "r",
+            "r", "r", "r", "g", "g", "o", "g", "g", "o", "g", "g", "o", "r", "b", "b", "r", "b",
+            "b", "r", "b", "b",
+        ];
+        test_single(result, Turns::Fp);
+    }
+
+    #[test]
     fn right_single() {
         let result = vec![
             "", "w", "w", "r", "w", "w", "r", "w", "w", "r", "o", "o", "w", "o", "o", "w", "o",
@@ -101,8 +127,7 @@ mod tests {
             "r", "r", "y", "g", "g", "g", "g", "g", "g", "g", "g", "g", "b", "b", "b", "b", "b",
             "b", "b", "b", "b",
         ];
-        let (cube, expected_result_cube) = test_single(result, Turns::R);
-        assert_eq!(cube, expected_result_cube);
+        test_single(result, Turns::R);
     }
 
     #[test]
@@ -113,7 +138,6 @@ mod tests {
             "r", "r", "w", "g", "g", "g", "g", "g", "g", "g", "g", "g", "b", "b", "b", "b", "b",
             "b", "b", "b", "b",
         ];
-        let (cube, expected_result_cube) = test_single(result, Turns::Rp);
-        assert_eq!(cube, expected_result_cube);
+        test_single(result, Turns::Rp);
     }
 }
