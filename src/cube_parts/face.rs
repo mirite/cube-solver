@@ -10,30 +10,56 @@ pub struct Face {
     pub b: Row,
 }
 
+#[derive(Eq, PartialEq, Debug)]
+pub enum Orientation {
+    X,
+    Y,
+    Z,
+}
+
 pub fn rotate_clockwise(
     mut working_face: &mut Face,
     mut top_edge: &mut Face,
     mut right_edge: &mut Face,
     mut down_edge: &mut Face,
     mut left_edge: &mut Face,
+    orientation: Orientation,
 ) -> () {
     rotate_face_clockwise(&mut working_face);
     let temp_top_edge = top_edge.clone();
     let temp_right_edge = right_edge.clone();
     let temp_down_edge = down_edge.clone();
     let temp_left_edge = left_edge.clone();
-    top_edge.b.l = temp_left_edge.b.r;
-    top_edge.b.c = temp_left_edge.m.r;
-    top_edge.b.r = temp_left_edge.t.r;
-    right_edge.t.l = temp_top_edge.b.l;
-    right_edge.m.l = temp_top_edge.b.c;
-    right_edge.b.l = temp_top_edge.b.r;
-    down_edge.t.l = temp_right_edge.t.l;
-    down_edge.t.c = temp_right_edge.m.l;
-    down_edge.t.r = temp_right_edge.b.l;
-    left_edge.t.r = temp_down_edge.t.l;
-    left_edge.m.r = temp_down_edge.t.c;
-    left_edge.b.r = temp_down_edge.t.r;
+    if orientation == Orientation::Y {
+    } else if orientation == Orientation::Z {
+        //Face, Back
+        top_edge.b.l = temp_left_edge.b.r;
+        top_edge.b.c = temp_left_edge.m.r;
+        top_edge.b.r = temp_left_edge.t.r;
+        right_edge.t.l = temp_top_edge.b.l;
+        right_edge.m.l = temp_top_edge.b.c;
+        right_edge.b.l = temp_top_edge.b.r;
+        down_edge.t.l = temp_right_edge.t.l;
+        down_edge.t.c = temp_right_edge.m.l;
+        down_edge.t.r = temp_right_edge.b.l;
+        left_edge.t.r = temp_down_edge.t.l;
+        left_edge.m.r = temp_down_edge.t.c;
+        left_edge.b.r = temp_down_edge.t.r;
+    } else if orientation == Orientation::X {
+        //Right, Left
+        top_edge.t.r = temp_left_edge.b.r;
+        top_edge.m.r = temp_left_edge.m.r;
+        top_edge.b.r = temp_left_edge.t.r;
+        right_edge.t.l = temp_top_edge.b.l;
+        right_edge.m.l = temp_top_edge.b.c;
+        right_edge.b.l = temp_top_edge.b.r;
+        down_edge.t.r = temp_right_edge.t.l;
+        down_edge.m.r = temp_right_edge.m.l;
+        down_edge.b.r = temp_right_edge.b.l;
+        left_edge.t.r = temp_down_edge.t.l;
+        left_edge.m.r = temp_down_edge.t.c;
+        left_edge.b.r = temp_down_edge.t.r;
+    }
 }
 
 fn rotate_face_clockwise(working_face: &mut Face) {
@@ -54,24 +80,41 @@ pub fn rotate_counter_clockwise(
     mut right_edge: &mut Face,
     mut down_edge: &mut Face,
     mut left_edge: &mut Face,
+    orientation: Orientation,
 ) -> () {
     rotate_face_counter_clockwise(&mut working_face);
     let temp_top_edge = top_edge.clone();
     let temp_right_edge = right_edge.clone();
     let temp_down_edge = down_edge.clone();
     let temp_left_edge = left_edge.clone();
-    top_edge.b.l = temp_right_edge.t.l;
-    top_edge.b.c = temp_right_edge.m.l;
-    top_edge.b.r = temp_right_edge.b.l;
-    right_edge.t.l = temp_down_edge.t.l;
-    right_edge.m.l = temp_down_edge.t.c;
-    right_edge.b.l = temp_down_edge.t.r;
-    down_edge.t.l = temp_left_edge.t.r;
-    down_edge.t.c = temp_left_edge.m.r;
-    down_edge.t.r = temp_left_edge.b.r;
-    left_edge.t.r = temp_top_edge.b.l;
-    left_edge.m.r = temp_top_edge.b.c;
-    left_edge.b.r = temp_top_edge.b.r;
+    if orientation == Orientation::Y {
+    } else if orientation == Orientation::Z {
+        top_edge.b.l = temp_right_edge.t.l;
+        top_edge.b.c = temp_right_edge.m.l;
+        top_edge.b.r = temp_right_edge.b.l;
+        right_edge.t.l = temp_down_edge.t.l;
+        right_edge.m.l = temp_down_edge.t.c;
+        right_edge.b.l = temp_down_edge.t.r;
+        down_edge.t.l = temp_left_edge.t.r;
+        down_edge.t.c = temp_left_edge.m.r;
+        down_edge.t.r = temp_left_edge.b.r;
+        left_edge.t.r = temp_top_edge.b.l;
+        left_edge.m.r = temp_top_edge.b.c;
+        left_edge.b.r = temp_top_edge.b.r;
+    } else if orientation == Orientation::X {
+        top_edge.t.r = temp_right_edge.t.l;
+        top_edge.m.r = temp_right_edge.m.l;
+        top_edge.b.r = temp_right_edge.b.l;
+        right_edge.t.l = temp_down_edge.t.l;
+        right_edge.m.l = temp_down_edge.t.c;
+        right_edge.b.l = temp_down_edge.t.r;
+        down_edge.t.r = temp_left_edge.t.r;
+        down_edge.m.r = temp_left_edge.m.r;
+        down_edge.b.r = temp_left_edge.b.r;
+        left_edge.t.r = temp_top_edge.b.l;
+        left_edge.m.r = temp_top_edge.b.c;
+        left_edge.b.r = temp_top_edge.b.r;
+    }
 }
 
 fn rotate_face_counter_clockwise(working_face: &mut Face) {

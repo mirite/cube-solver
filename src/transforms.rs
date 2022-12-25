@@ -1,5 +1,5 @@
 use crate::cube_parts::cube::Cube;
-use crate::cube_parts::face::{rotate_clockwise, rotate_counter_clockwise};
+use crate::cube_parts::face::{rotate_clockwise, rotate_counter_clockwise, Orientation};
 
 #[derive(Eq, Hash, PartialEq)]
 pub enum Turns {
@@ -24,6 +24,7 @@ fn f(mut working_cube: Cube) -> Cube {
         &mut working_cube.blue,
         &mut working_cube.red,
         &mut working_cube.green,
+        Orientation::Z,
     );
     working_cube
 }
@@ -35,6 +36,7 @@ fn fp(mut working_cube: Cube) -> Cube {
         &mut working_cube.blue,
         &mut working_cube.red,
         &mut working_cube.green,
+        Orientation::Z,
     );
     working_cube
 }
@@ -46,6 +48,7 @@ fn r(mut working_cube: Cube) -> Cube {
         &mut working_cube.yellow,
         &mut working_cube.red,
         &mut working_cube.white,
+        Orientation::X,
     );
     working_cube
 }
@@ -57,6 +60,7 @@ fn rp(mut working_cube: Cube) -> Cube {
         &mut working_cube.yellow,
         &mut working_cube.red,
         &mut working_cube.white,
+        Orientation::X,
     );
     working_cube
 }
@@ -68,6 +72,7 @@ fn l(mut working_cube: Cube) -> Cube {
         &mut working_cube.white,
         &mut working_cube.red,
         &mut working_cube.yellow,
+        Orientation::X,
     );
     working_cube
 }
@@ -79,6 +84,7 @@ fn lp(mut working_cube: Cube) -> Cube {
         &mut working_cube.white,
         &mut working_cube.red,
         &mut working_cube.yellow,
+        Orientation::X,
     );
     working_cube
 }
@@ -90,6 +96,7 @@ fn u(mut working_cube: Cube) -> Cube {
         &mut working_cube.blue,
         &mut working_cube.white,
         &mut working_cube.green,
+        Orientation::Y,
     );
     working_cube
 }
@@ -101,6 +108,7 @@ fn up(mut working_cube: Cube) -> Cube {
         &mut working_cube.blue,
         &mut working_cube.white,
         &mut working_cube.green,
+        Orientation::Y,
     );
     working_cube
 }
@@ -112,6 +120,7 @@ fn d(mut working_cube: Cube) -> Cube {
         &mut working_cube.blue,
         &mut working_cube.yellow,
         &mut working_cube.green,
+        Orientation::Y,
     );
     working_cube
 }
@@ -123,6 +132,7 @@ fn dp(mut working_cube: Cube) -> Cube {
         &mut working_cube.blue,
         &mut working_cube.yellow,
         &mut working_cube.green,
+        Orientation::Y,
     );
     working_cube
 }
@@ -134,6 +144,7 @@ fn b(mut working_cube: Cube) -> Cube {
         &mut working_cube.green,
         &mut working_cube.orange,
         &mut working_cube.blue,
+        Orientation::Z,
     );
     working_cube
 }
@@ -145,11 +156,12 @@ fn bp(mut working_cube: Cube) -> Cube {
         &mut working_cube.green,
         &mut working_cube.orange,
         &mut working_cube.blue,
+        Orientation::Z,
     );
     working_cube
 }
 
-pub fn turn_cube(turn: Turns, mut cube: Cube) -> Cube {
+pub fn turn_cube(turn: Turns, cube: Cube) -> Cube {
     match turn {
         Turns::F => f(cube),
         Turns::Fp => fp(cube),
