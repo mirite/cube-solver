@@ -1,7 +1,8 @@
 use crate::cube_parts::cube::{build_cube, Cube};
 
 pub mod inverses;
-pub mod turns;
+pub mod multi_turns;
+pub mod single_turns;
 
 pub fn create_vec(str: Vec<&str>) -> Vec<String> {
     let chars = str.iter().map(|&s| String::from(s));
