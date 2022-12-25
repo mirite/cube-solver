@@ -40,20 +40,80 @@ mod tests {
         build_cube(&input)
     }
 
+    fn test_inverse(clockwise: Turns, counter_clockwise: Turns) -> (Cube, Cube) {
+        let mut cube = solved_cube();
+        let expected_result_cube = solved_cube();
+
+        cube = turn_cube(clockwise, cube);
+        cube = turn_cube(counter_clockwise, cube);
+        (cube, expected_result_cube)
+    }
+
+    fn test_single(result_map: Vec<&str>, turn: Turns) -> (Cube, Cube) {
+        let mut cube = solved_cube();
+        let expected_result_cube = build_cube(&create_vec(result_map));
+
+        cube = turn_cube(Turns::R, cube);
+        (cube, expected_result_cube)
+    }
+
     #[test]
-    fn it_works() {
+    fn right_inverses() {
+        let (cube, expected_result_cube) = test_inverse(Turns::R, Turns::Rp);
+        assert_eq!(cube, expected_result_cube);
+    }
+
+    #[test]
+    fn left_inverses() {
+        let (cube, expected_result_cube) = test_inverse(Turns::L, Turns::Lp);
+        assert_eq!(cube, expected_result_cube);
+    }
+
+    #[test]
+    fn front_inverses() {
+        let (cube, expected_result_cube) = test_inverse(Turns::F, Turns::Fp);
+        assert_eq!(cube, expected_result_cube);
+    }
+
+    #[test]
+    fn back_inverses() {
+        let (cube, expected_result_cube) = test_inverse(Turns::B, Turns::Bp);
+        assert_eq!(cube, expected_result_cube);
+    }
+
+    #[test]
+    fn up_inverses() {
+        let (cube, expected_result_cube) = test_inverse(Turns::U, Turns::Up);
+        assert_eq!(cube, expected_result_cube);
+    }
+
+    #[test]
+    fn down_inverses() {
+        let (cube, expected_result_cube) = test_inverse(Turns::D, Turns::Dp);
+        assert_eq!(cube, expected_result_cube);
+    }
+
+    #[test]
+    fn right_single() {
         let result = vec![
             "", "w", "w", "r", "w", "w", "r", "w", "w", "r", "o", "o", "w", "o", "o", "w", "o",
             "o", "w", "y", "y", "o", "y", "y", "o", "y", "y", "o", "r", "r", "y", "r", "r", "y",
             "r", "r", "y", "g", "g", "g", "g", "g", "g", "g", "g", "g", "b", "b", "b", "b", "b",
             "b", "b", "b", "b",
         ];
+        let (cube, expected_result_cube) = test_single(result, Turns::R);
+        assert_eq!(cube, expected_result_cube);
+    }
 
-        let mut cube = solved_cube();
-        let expected_result_cube = build_cube(&create_vec(result));
-
-        cube = turn_cube(Turns::R, cube);
-
+    #[test]
+    fn right_counter_single() {
+        let result = vec![
+            "", "w", "w", "o", "w", "w", "o", "w", "w", "o", "o", "o", "y", "o", "o", "y", "o",
+            "o", "y", "o", "y", "y", "o", "y", "y", "o", "y", "y", "r", "r", "w", "r", "r", "w",
+            "r", "r", "w", "g", "g", "g", "g", "g", "g", "g", "g", "g", "b", "b", "b", "b", "b",
+            "b", "b", "b", "b",
+        ];
+        let (cube, expected_result_cube) = test_single(result, Turns::Rp);
         assert_eq!(cube, expected_result_cube);
     }
 }
