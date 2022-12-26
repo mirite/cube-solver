@@ -80,12 +80,12 @@ pub fn test_cube(cube: &Cube) -> () {
     counts = test_face(&cube.orange, counts, 'o');
     counts = test_face(&cube.blue, counts, 'b');
 
-    assert_eq!(counts.g, 9);
-    assert_eq!(counts.r, 9);
-    assert_eq!(counts.w, 9);
-    assert_eq!(counts.o, 9);
-    assert_eq!(counts.b, 9);
-    assert_eq!(counts.y, 9);
+    assert_eq!(counts.g, 9, "Green");
+    assert_eq!(counts.r, 9, "Red");
+    assert_eq!(counts.w, 9, "White");
+    assert_eq!(counts.o, 9, "Orange");
+    assert_eq!(counts.b, 9, "Blue");
+    assert_eq!(counts.y, 9, "Yellow");
 }
 
 pub struct Counts {
