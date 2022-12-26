@@ -1,7 +1,7 @@
 use crate::cube_parts::cube::Cube;
 use crate::cube_parts::face::{rotate_face_clockwise, rotate_face_counter_clockwise, Orientation};
 
-#[derive(Eq, Hash, PartialEq)]
+#[derive(Eq, Hash, PartialEq, Clone, Copy)]
 pub enum Turns {
     F,
     Fp,
@@ -17,21 +17,38 @@ pub enum Turns {
     Bp,
 }
 
+pub fn get_all_turns() -> [Turns; 12] {
+    [
+        Turns::F,
+        Turns::Fp,
+        Turns::R,
+        Turns::Rp,
+        Turns::L,
+        Turns::Lp,
+        Turns::U,
+        Turns::Up,
+        Turns::D,
+        Turns::Dp,
+        Turns::B,
+        Turns::Bp,
+    ]
+}
+
 fn f(mut working_cube: Cube) -> Cube {
     working_cube.white = rotate_face_clockwise(working_cube.white);
     let temp_orange_edge = working_cube.orange.clone();
     let temp_blue_edge = working_cube.blue.clone();
     let temp_red_edge = working_cube.red.clone();
     let temp_green_edge = working_cube.green.clone();
-    working_cube.orange.b.l = temp_green_edge.t.r;
+    working_cube.orange.b.l = temp_green_edge.b.r;
     working_cube.orange.b.c = temp_green_edge.m.r;
-    working_cube.orange.b.r = temp_green_edge.b.r;
+    working_cube.orange.b.r = temp_green_edge.t.r;
     working_cube.blue.t.l = temp_orange_edge.b.l;
     working_cube.blue.m.l = temp_orange_edge.b.c;
     working_cube.blue.b.l = temp_orange_edge.b.r;
-    working_cube.red.t.l = temp_blue_edge.t.l;
+    working_cube.red.t.l = temp_blue_edge.b.l;
     working_cube.red.t.c = temp_blue_edge.m.l;
-    working_cube.red.t.r = temp_blue_edge.b.l;
+    working_cube.red.t.r = temp_blue_edge.t.l;
     working_cube.green.t.r = temp_red_edge.t.l;
     working_cube.green.m.r = temp_red_edge.t.c;
     working_cube.green.b.r = temp_red_edge.t.r;
@@ -47,15 +64,15 @@ fn fp(mut working_cube: Cube) -> Cube {
     working_cube.orange.b.l = temp_blue_edge.t.l;
     working_cube.orange.b.c = temp_blue_edge.m.l;
     working_cube.orange.b.r = temp_blue_edge.b.l;
-    working_cube.blue.t.l = temp_red_edge.t.l;
+    working_cube.blue.t.l = temp_red_edge.t.r;
     working_cube.blue.m.l = temp_red_edge.t.c;
-    working_cube.blue.b.l = temp_red_edge.t.r;
+    working_cube.blue.b.l = temp_red_edge.t.l;
     working_cube.red.t.l = temp_green_edge.t.r;
     working_cube.red.t.c = temp_green_edge.m.r;
     working_cube.red.t.r = temp_green_edge.b.r;
-    working_cube.green.t.r = temp_orange_edge.b.l;
+    working_cube.green.t.r = temp_orange_edge.b.r;
     working_cube.green.m.r = temp_orange_edge.b.c;
-    working_cube.green.b.r = temp_orange_edge.b.r;
+    working_cube.green.b.r = temp_orange_edge.b.l;
     working_cube
 }
 

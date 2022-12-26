@@ -6,6 +6,8 @@ use std::env;
 pub mod tests;
 
 pub mod cube_parts;
+mod solver;
+mod step_1;
 mod transforms;
 
 fn main() {

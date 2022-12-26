@@ -30,12 +30,15 @@ fn test_single_advanced(result_map: Vec<[&str; 9]>, turn: Turns) -> () {
 #[test]
 fn face_single() {
     let result = vec![
-        "", "w", "w", "w", "w", "w", "w", "w", "w", "w", "o", "o", "o", "o", "o", "o", "g", "g",
-        "g", "y", "y", "y", "y", "y", "y", "y", "y", "y", "b", "b", "b", "r", "r", "r", "r", "r",
-        "r", "g", "g", "r", "g", "g", "r", "g", "g", "r", "o", "b", "b", "o", "b", "b", "o", "b",
-        "b",
+        ["h", "e", "a", "i", "w", "c", "j", "f", "d"],
+        ["k", "l", "m", "n", "o", "p", "L", "H", "E"],
+        ["u", "v", "x", "z", "y", "1", "2", "3", "4"],
+        ["R", "P", "L", "8", "r", "9", "0", "A", "B"],
+        ["C", "D", "5", "F", "g", "6", "I", "J", "7"],
+        ["q", "M", "N", "s", "b", "Q", "t", "S", "T"],
     ];
-    test_single(result, Turns::F);
+
+    test_single_advanced(result, Turns::F);
 }
 
 #[test]
@@ -61,13 +64,6 @@ fn right_single() {
     ];
 
     test_single_advanced(result, Turns::R);
-    // let result = vec![
-    //     "", "w", "w", "r", "w", "w", "r", "w", "w", "r", "o", "o", "w", "o", "o", "w", "o", "o",
-    //     "w", "o", "y", "y", "o", "y", "y", "o", "y", "y", "r", "r", "y", "r", "r", "y", "r", "r",
-    //     "y", "g", "g", "g", "g", "g", "g", "g", "g", "g", "b", "b", "b", "b", "b", "b", "b", "b",
-    //     "b",
-    // ];
-    // test_single(result, Turns::R);
 }
 
 #[test]

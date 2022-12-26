@@ -4,6 +4,7 @@ mod face;
 pub mod inverses;
 pub mod multi_turns;
 pub mod single_turns;
+mod step_1_solves;
 
 pub fn create_vec(str: Vec<&str>) -> Vec<String> {
     let chars = str.iter().map(|&s| String::from(s));
