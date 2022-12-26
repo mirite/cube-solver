@@ -57,3 +57,31 @@ fn multi_2() {
 
     test_multi(create_vec_from_pretty(result), turns);
 }
+
+#[test]
+fn multi_3() {
+    let result = vec![
+        ["r", "y", "y", "b", "w", "b", "o", "y", "y"],
+        ["r", "r", "o", "y", "o", "b", "b", "o", "o"],
+        ["w", "w", "w", "b", "y", "g", "b", "o", "y"],
+        ["y", "r", "r", "g", "r", "g", "b", "w", "w"],
+        ["g", "g", "w", "w", "g", "w", "r", "r", "b"],
+        ["g", "o", "g", "r", "b", "y", "g", "o", "o"],
+    ];
+    let mut turns: Vec<Turns> = Vec::new();
+    turns.push(Turns::B);
+    turns.push(Turns::F);
+    turns.push(Turns::L);
+    turns.push(Turns::Rp);
+    turns.push(Turns::U);
+    turns.push(Turns::R);
+    turns.push(Turns::D);
+    turns.push(Turns::Bp);
+    turns.push(Turns::Rp);
+    turns.push(Turns::Fp);
+    turns.push(Turns::Lp);
+    turns.push(Turns::Up);
+    turns.push(Turns::Dp);
+
+    test_multi(create_vec_from_pretty(result), turns);
+}
