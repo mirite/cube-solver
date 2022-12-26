@@ -1,9 +1,9 @@
-use crate::tests::solved_cube;
+use crate::tests::test_cube;
 use crate::transforms::{turn_cube, Turns};
 
 fn test_inverse(clockwise: Turns, counter_clockwise: Turns) -> () {
-    let mut cube = solved_cube();
-    let expected_result_cube = solved_cube();
+    let mut cube = test_cube();
+    let expected_result_cube = test_cube();
     cube = turn_cube(clockwise, cube);
     cube = turn_cube(counter_clockwise, cube);
     assert_eq!(

@@ -1,9 +1,9 @@
 use crate::cube_parts::cube::{build_cube, Cube};
 
+mod face;
 pub mod inverses;
 pub mod multi_turns;
 pub mod single_turns;
-mod face;
 
 pub fn create_vec(str: Vec<&str>) -> Vec<String> {
     let chars = str.iter().map(|&s| String::from(s));
@@ -15,6 +15,16 @@ pub fn solved_cube() -> Cube {
         "", "w", "w", "w", "w", "w", "w", "w", "w", "w", "o", "o", "o", "o", "o", "o", "o", "o",
         "o", "y", "y", "y", "y", "y", "y", "y", "y", "y", "r", "r", "r", "r", "r", "r", "r", "r",
         "r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "b", "b", "b", "b", "b", "b", "b", "b",
+        "b",
+    ]);
+    build_cube(&input)
+}
+
+pub fn test_cube() -> Cube {
+    let input = create_vec(vec![
+        "", "a", "c", "d", "e", "w", "f", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "s",
+        "t", "u", "v", "x", "y", "z", "1", "2", "3", "4", "5", "5", "7", "8", "r", "9", "0", "A",
+        "B", "C", "D", "E", "F", "g", "H", "I", "J", "L", "L", "M", "N", "b", "P", "Q", "R", "S",
         "b",
     ]);
     build_cube(&input)
