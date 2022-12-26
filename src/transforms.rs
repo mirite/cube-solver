@@ -187,43 +187,43 @@ fn up(mut working_cube: Cube) -> Cube {
 
 fn d(mut working_cube: Cube) -> Cube {
     working_cube.red = rotate_face_counter_clockwise(working_cube.red);
-    let temp_top_edge = working_cube.white.clone();
-    let temp_right_edge = working_cube.blue.clone();
-    let temp_down_edge = working_cube.yellow.clone();
-    let temp_left_edge = working_cube.green.clone();
-    working_cube.yellow.b.l = temp_left_edge.b.l;
-    working_cube.yellow.b.c = temp_left_edge.b.c;
-    working_cube.yellow.b.r = temp_left_edge.b.r;
-    working_cube.blue.b.l = temp_down_edge.b.r;
-    working_cube.blue.b.c = temp_down_edge.b.c;
-    working_cube.blue.b.r = temp_down_edge.b.l;
-    working_cube.white.b.l = temp_right_edge.b.l;
-    working_cube.white.b.c = temp_right_edge.b.c;
-    working_cube.white.b.r = temp_right_edge.b.r;
-    working_cube.green.b.r = temp_top_edge.b.l;
-    working_cube.green.b.c = temp_top_edge.b.c;
-    working_cube.green.b.l = temp_top_edge.b.r;
+    let temp_white_face = working_cube.white.clone();
+    let temp_blue_face = working_cube.blue.clone();
+    let temp_yellow_face = working_cube.yellow.clone();
+    let temp_green_face = working_cube.green.clone();
+    working_cube.yellow.b.l = temp_green_face.b.r;
+    working_cube.yellow.b.c = temp_green_face.b.c;
+    working_cube.yellow.b.r = temp_green_face.b.l;
+    working_cube.blue.b.l = temp_yellow_face.b.r;
+    working_cube.blue.b.c = temp_yellow_face.b.c;
+    working_cube.blue.b.r = temp_yellow_face.b.l;
+    working_cube.white.b.l = temp_blue_face.b.l;
+    working_cube.white.b.c = temp_blue_face.b.c;
+    working_cube.white.b.r = temp_blue_face.b.r;
+    working_cube.green.b.l = temp_white_face.b.l;
+    working_cube.green.b.c = temp_white_face.b.c;
+    working_cube.green.b.r = temp_white_face.b.r;
     working_cube
 }
 
 fn dp(mut working_cube: Cube) -> Cube {
-    working_cube.orange = rotate_face_clockwise(working_cube.orange);
-    let temp_top_edge = working_cube.yellow.clone();
-    let temp_right_edge = working_cube.blue.clone();
-    let temp_down_edge = working_cube.white.clone();
-    let temp_left_edge = working_cube.green.clone();
-    working_cube.yellow.b.l = temp_right_edge.b.r;
-    working_cube.yellow.b.c = temp_right_edge.b.c;
-    working_cube.yellow.b.r = temp_right_edge.b.l;
-    working_cube.blue.b.l = temp_down_edge.b.r;
-    working_cube.blue.b.c = temp_down_edge.b.c;
-    working_cube.blue.b.r = temp_down_edge.b.l;
-    working_cube.white.b.l = temp_left_edge.b.l;
-    working_cube.white.b.c = temp_left_edge.b.c;
-    working_cube.white.b.r = temp_left_edge.b.r;
-    working_cube.green.b.r = temp_top_edge.b.l;
-    working_cube.green.b.c = temp_top_edge.b.c;
-    working_cube.green.b.l = temp_top_edge.b.r;
+    working_cube.red = rotate_face_clockwise(working_cube.red);
+    let temp_yellow_face = working_cube.yellow.clone();
+    let temp_blue_face = working_cube.blue.clone();
+    let temp_white_face = working_cube.white.clone();
+    let temp_green_face = working_cube.green.clone();
+    working_cube.yellow.b.l = temp_blue_face.b.r;
+    working_cube.yellow.b.c = temp_blue_face.b.c;
+    working_cube.yellow.b.r = temp_blue_face.b.l;
+    working_cube.blue.b.l = temp_white_face.b.l;
+    working_cube.blue.b.c = temp_white_face.b.c;
+    working_cube.blue.b.r = temp_white_face.b.r;
+    working_cube.white.b.l = temp_green_face.b.l;
+    working_cube.white.b.c = temp_green_face.b.c;
+    working_cube.white.b.r = temp_green_face.b.r;
+    working_cube.green.b.r = temp_yellow_face.b.l;
+    working_cube.green.b.c = temp_yellow_face.b.c;
+    working_cube.green.b.l = temp_yellow_face.b.r;
     working_cube
 }
 
