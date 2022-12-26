@@ -12,6 +12,35 @@ pub struct Cube {
     pub orange: Face,
 }
 
+pub fn create_vec(str: Vec<&str>) -> Vec<String> {
+    let chars = str.iter().map(|&s| String::from(s));
+    chars.collect()
+}
+
+pub fn create_vec_from_pretty(str: Vec<[&str; 9]>) -> Vec<&str> {
+    let mut chars: Vec<&str> = Vec::new();
+    chars.push("");
+    for group in str {
+        for c in group {
+            chars.push(c);
+        }
+    }
+    chars
+}
+
+pub fn solved_cube() -> Cube {
+    let input = vec![
+        ["w", "w", "w", "w", "w", "w", "w", "w", "w"],
+        ["o", "o", "o", "o", "o", "o", "o", "o", "o"],
+        ["y", "y", "y", "y", "y", "y", "y", "y", "y"],
+        ["r", "r", "r", "r", "r", "r", "r", "r", "r"],
+        ["g", "g", "g", "g", "g", "g", "g", "g", "g"],
+        ["b", "b", "b", "b", "b", "b", "b", "b", "b"],
+    ];
+    let intermediate = create_vec_from_pretty(input);
+    build_cube(&create_vec(intermediate))
+}
+
 impl Display for Cube {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let spacer = "        ";

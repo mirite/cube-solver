@@ -1,7 +1,7 @@
 use crate::cube_parts::cube::Cube;
 use crate::cube_parts::face::{rotate_face_clockwise, rotate_face_counter_clockwise, Orientation};
 
-#[derive(Eq, Hash, PartialEq, Clone, Copy)]
+#[derive(Eq, Hash, PartialEq, Clone, Copy, Debug)]
 pub enum Turns {
     F,
     Fp,

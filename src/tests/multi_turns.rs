@@ -1,5 +1,6 @@
-use crate::cube_parts::cube::{build_cube, test_cube};
-use crate::tests::{create_vec, create_vec_from_pretty, solved_cube};
+use crate::cube_parts::cube::{
+    build_cube, create_vec, create_vec_from_pretty, solved_cube, test_cube,
+};
 use crate::transforms::{turn_cube, Turns};
 
 fn test_multi(result_map: Vec<&str>, turns: Vec<Turns>) -> () {

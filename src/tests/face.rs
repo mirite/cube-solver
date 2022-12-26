@@ -1,7 +1,5 @@
-use crate::cube_parts::cube::build_cube;
 use crate::cube_parts::face::{rotate_face_clockwise, rotate_face_counter_clockwise, Face};
 use crate::cube_parts::row::Row;
-use crate::tests::{create_vec, solved_cube};
 
 fn get_test_face() -> Face {
     Face {
