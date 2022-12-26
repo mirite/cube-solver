@@ -101,3 +101,25 @@ fn up_counter_single() {
     ];
     test_single(result, Turns::Up);
 }
+
+#[test]
+fn down_single() {
+    let result = vec![
+        "", "w", "w", "w", "w", "w", "w", "b", "b", "b", "o", "o", "o", "o", "o", "o", "o", "o",
+        "o", "y", "y", "y", "y", "y", "y", "g", "g", "g", "r", "r", "r", "r", "r", "r", "r", "r",
+        "r", "g", "g", "g", "g", "g", "g", "w", "w", "w", "b", "b", "b", "b", "b", "b", "y", "y",
+        "y",
+    ];
+    test_single(result, Turns::D);
+}
+
+#[test]
+fn down_counter_single() {
+    let result = vec![
+        "", "w", "w", "w", "w", "w", "w", "g", "g", "g", "o", "o", "o", "o", "o", "o", "o", "o",
+        "o", "y", "y", "y", "y", "y", "y", "b", "b", "b", "r", "r", "r", "r", "r", "r", "r", "r",
+        "r", "g", "g", "g", "g", "g", "g", "y", "y", "y", "b", "b", "b", "b", "b", "b", "w", "w",
+        "w",
+    ];
+    test_single(result, Turns::Dp);
+}
