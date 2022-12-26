@@ -23,13 +23,16 @@ pub fn create_vec_from_pretty(str: Vec<[&str; 9]>) -> Vec<&str> {
 }
 
 pub fn solved_cube() -> Cube {
-    let input = create_vec(vec![
-        "", "w", "w", "w", "w", "w", "w", "w", "w", "w", "o", "o", "o", "o", "o", "o", "o", "o",
-        "o", "y", "y", "y", "y", "y", "y", "y", "y", "y", "r", "r", "r", "r", "r", "r", "r", "r",
-        "r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "b", "b", "b", "b", "b", "b", "b", "b",
-        "b",
-    ]);
-    build_cube(&input)
+    let input = vec![
+        ["w", "w", "w", "w", "w", "w", "w", "w", "w"],
+        ["o", "o", "o", "o", "o", "o", "o", "o", "o"],
+        ["y", "y", "y", "y", "y", "y", "y", "y", "y"],
+        ["r", "r", "r", "r", "r", "r", "r", "r", "r"],
+        ["g", "g", "g", "g", "g", "g", "g", "g", "g"],
+        ["b", "b", "b", "b", "b", "b", "b", "b", "b"],
+    ];
+    let intermediate = create_vec_from_pretty(input);
+    build_cube(&create_vec(intermediate))
 }
 
 pub fn test_cube() -> Cube {
