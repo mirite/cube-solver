@@ -1,8 +1,11 @@
 use super::face::build_side;
 use crate::cube_parts::face::{test_face, Face};
+use serde::{Deserialize, Serialize};
 use std::fmt::{Display, Formatter};
+use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsValue;
 
-#[derive(PartialEq, Debug, Copy, Clone)]
+#[derive(PartialEq, Debug, Copy, Clone, Serialize, Deserialize)]
 pub struct Cube {
     pub white: Face,
     pub red: Face,
@@ -124,4 +127,9 @@ pub struct Counts {
     pub w: u8,
     pub o: u8,
     pub b: u8,
+}
+
+pub fn to_js() -> JsValue {
+    let cube = solved_cube();
+    serde_wasm_bindgen::to_value(&cube).unwrap()
 }

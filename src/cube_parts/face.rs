@@ -1,9 +1,10 @@
 use super::row::Row;
 use super::square::parse_square;
 use crate::cube_parts::cube::{Counts, Cube};
+use serde::{Deserialize, Serialize};
 use std::fmt::{Display, Formatter};
 
-#[derive(Copy, Clone, Eq, PartialEq, Debug)]
+#[derive(Copy, Clone, Eq, PartialEq, Debug, Serialize, Deserialize)]
 pub struct Face {
     pub t: Row,
     pub m: Row,

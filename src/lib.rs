@@ -1,4 +1,4 @@
-use crate::cube_parts::cube::{solved_cube, Cube};
+use crate::cube_parts::cube::{solved_cube, to_js, Cube};
 use wasm_bindgen::prelude::*;
 
 pub mod cube_parts;
@@ -8,6 +8,7 @@ pub mod cube_parts;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
-pub fn get_cube() -> Cube {
-    solved_cube()
+#[wasm_bindgen]
+pub fn get_cube() -> JsValue {
+    to_js()
 }
