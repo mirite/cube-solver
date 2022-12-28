@@ -1,4 +1,4 @@
-use crate::cube_parts::cube::{build_cube, test_cube};
+use crate::cube_parts::cube::{build_cube, solved_cube, test_cube, Cube};
 use crate::transforms::{turn_cube, Turns};
 use std::env;
 
